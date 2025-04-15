@@ -35,13 +35,13 @@ const proconnect = knex({
 */
 
 app.get('/usuario', async (req, res) => {
-  const usuarios = await proconnect.select("*").from("usuario")
+  const usuarios = await proconnect.select("*").from("usuarios");
   res.send(usuarios)
 })
 
-app.post('/usuario', async (req,res) => {
+app.post('/registro', async (req,res) => {
   const { nome, email, senha } = req.body;
-  const nUsuario = await proconnect("usuario").insert({ nome, email, senha })
+  const nUsuario = await proconnect("usuarios").insert({ nome, email, senha })
   res.json(nUsuario);
 })
 

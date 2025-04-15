@@ -3,7 +3,7 @@ CREATE DATABASE proconnect;
 USE proconnect;
 
 -- Tabela de usuários
-CREATE TABLE usuario (
+CREATE TABLE usuarios (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -17,7 +17,7 @@ CREATE TABLE perfil (
     titulo VARCHAR(100) NOT NULL,
     descricao TEXT NOT NULL,
     foto VARCHAR(255),
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id)
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
 );
 
-INSERT INTO usuario(nome, email, senha) VALUE ( "Teste", "teste@gmail.com", 1234567);
+INSERT INTO usuarios(nome, email, senha) VALUE ( "Teste", "teste@gmail.com", 1234567);
