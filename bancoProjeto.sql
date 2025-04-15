@@ -19,3 +19,5 @@ CREATE TABLE perfil (
     foto VARCHAR(255),
     FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );
+
+INSERT INTO usuario(nome, email, senha) VALUE ( "Teste", "teste@gmail.com", 1234567);

@@ -7,7 +7,7 @@ const port = 1212;
 app.use(express.json());
 app.use(cors());
 
-const knexDb = knex({
+const proconnect = knex({
   client: "mysql2",
   connection: {
     host: "127.0.0.1",
@@ -18,8 +18,31 @@ const knexDb = knex({
   },
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+// Get => Listar
+// Post => Criar
+// Put => Editar Vários (usuários, informaçoes, etc)
+// Patch => Edita apenas UM
+// Delete => Deletar
+
+// app.get('/usuarios') // Trzer todo os usuarios
+// app.post('/usuarios') // Cria um novo usuario
+// app.put('/usuarios') // Edita um usuario
+// app.delete('/usuarios') // Deleta um usuario
+
+/*  O que Se precisa
+  1) Tipo de Rota / Método HTTP
+  2) Endereço ('/')
+*/
+
+app.get('/usuario', async (req, res) => {
+  const usuarios = await proconnect.select("*").from("usuario")
+  res.send(usuarios)
+})
+
+app.post('/usuario', async (req,res) => {
+  const { nome, email, senha } = req.body;
+  const nUsuario = await proconnect("usuario").insert({ nome, email, senha })
+  res.json(nUsuario);
 })
 
 app.listen(port, () => {
